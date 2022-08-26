@@ -1,48 +1,49 @@
+class AnalisaDor:
+    listaToken = []
+    anterior = 0
+    cont = 0
+    def __init__(self, listaT):
+        self.listaToken = listaT
 
-global cont, anterior, listaToken
+    def term(self, token):
+        ret = self.listaToken[self.cont][0] == token
+        self.cont = self.cont + 1
+        return ret
 
-def term(token):
-    ret = listaToken[cont][0] == token
-    cont = cont + 1
-    return ret
+    def E1(self):
+        return self.T()
 
-def E1():
-    return T()
+    def E2(self):
+        return self.T() and self.term('MAIS') and self.E()
 
-def E2():
-    return T() and term('MAIS') and E()
-
-def E():
-    anterior = cont
-    if E1():
-        return True
-    else:
-        cont = anterior
-        return E2()
-
-def T1():
-    return term('mais')
-
-def T2():
-    return term('INT') and term('MULT') and T()
-
-def T3():
-    return term('AP') and E() and term('FP')
-
-def T():
-    anterior = cont
-    if T1():
-        return True
-    else:
-        cont = anterior
-        if T2():
+    def E(self):
+        self.anterior = self.cont
+        if self.E1():
             return True
         else:
-            cont = anterior
-            return T3()
+            self.cont = self.anterior
+            return self.E2()
 
-def verifica(lista_tk):
-    cont = 0
-    anterior = 0
-    listaToken = lista_tk 
-    print(E())
+    def T1(self):
+        return self.term('INT')
+
+    def T2(self):
+        return self.term('INT') and self.term('MULT') and self.T()
+
+    def T3(self):
+        return self.term('AP') and self.E() and self.term('FP')
+
+    def T(self):
+        self.anterior = self.cont
+        if self.T1():
+            print("t1")
+            return True
+        else:
+            self.cont = self.anterior
+            if self.T2():
+                print("t2")
+                return True
+            else:
+                self.cont = self.anterior
+                print("t3")
+                return self.T3()

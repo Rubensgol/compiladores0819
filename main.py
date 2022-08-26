@@ -3,4 +3,6 @@ import analisadorTeste as gramatico
 
 listToken = sintaxe.lerTokens()
 
-gramatico.verifica(listToken)
+anaGrama = gramatico.AnalisaDor(listToken).E()
+
+print(anaGrama)
