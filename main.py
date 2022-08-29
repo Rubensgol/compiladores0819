@@ -1,8 +1,8 @@
 import anaslisador as sintaxe
-import analisadorTeste as gramatico
+import analisadorTeste
 
 listToken = sintaxe.lerTokens()
 
-anaGrama = gramatico.AnalisaDor(listToken).E()
+anaGrama = analisadorTeste.AnalisaDor(listToken)
 
-print(anaGrama)
+print(anaGrama.E())

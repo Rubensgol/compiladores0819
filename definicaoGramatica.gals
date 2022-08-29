@@ -1,0 +1,55 @@
+#Options
+GenerateScanner = true
+GenerateParser = true
+Language = Java
+ScannerName = Lexico
+ParserName = Sintatico
+SemanticName = Semantico
+ScannerCaseSensitive = true
+ScannerTable = Full
+Input = String
+Parser = RD
+#RegularDefinitions
+letras:[a-zA-Z]
+numeros:[0-9]
+#Tokens
+if:"if"
+AP:"("
+FP:")"
+AC: "{"
+FC: "}"
+MAIOR: ">"
+MENOR: "<"
+variavel:{letras}({letras}{numeros})*
+cont:{numeros}+
+PV:";"
+print: "print"
+igual: "="
+funcao: "funcao"
+int : "int"
+virgula : ","
+#NonTerminals
+<FUNCAO>
+<ESCOPO>
+<IF>
+<COND>
+<PRINT>
+<SCOND>
+<VAR>
+<ATRIB>
+<PARAN>
+<PARANS>
+<TIPO>
+#Grammar
+<FUNCAO> ::= funcao variavel AP <PARAN> FP AC <ESCOPO> FC;
+<PARAN> ::= <TIPO> variavel<PARANS> ;
+<PARANS> ::= virgula<PARAN> | î;
+<ESCOPO> ::= <IF> | <PRINT> | <ATRIB>;
+<IF> ::= if AP <COND> FP AC <ESCOPO> FC;
+<COND> ::= <VAR> <SCOND> <VAR>;
+<ATRIB> ::= <VAR> igual <VAR> PV;
+<SCOND> ::= MAIOR | MENOR;
+<PRINT> ::= print AP <VAR> FP PV;
+<VAR> ::= variavel | cont;
+<TIPO> ::= int;
+
