@@ -14,10 +14,20 @@ class AnalisaDor:
         return self.term('funcao') and self.term('variavel') and self.term('AP') and self.PARAN() and self.term('FP') and self.term('AC') and self.ESCOPO() and self.term('FC')
 
     def PARAN(self):
-        return self.TIPO() and self.term('variavel') and self.PARANS()
+        anterior = cont
+        if self.TIPO() and self.term('variavel') and self.PARANS():
+            return True
+        else:
+            cont = anterior
+            return self.VAZIO()
 
     def PARANS(self):
-        return self.term('VIRGULA') and self.PARAN()
+        anterior = cont
+        if self.term('VIRGULA') and self.PARAN():
+            return True
+        else:
+            cont = anterior
+            return self.VAZIO()
 
     def ESCOPO1(self):
         return self.IF
@@ -82,3 +92,14 @@ class AnalisaDor:
             else:
                 cont = anterior
                 return self.ESCOPO3()
+    
+    def LISTESCOPO(self):
+        anterior = cont
+        if self.ESCOPO() and self.LISTESCOPO():
+            return True
+        else:
+            cont = anterior
+            return self.VAZIO()
+
+    def VAZIO(self):
+        return True
