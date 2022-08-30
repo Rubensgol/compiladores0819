@@ -7,11 +7,12 @@ ParserName = Sintatico
 SemanticName = Semantico
 ScannerCaseSensitive = true
 ScannerTable = Full
-Input = String
+Input = Stream
 Parser = RD
 #RegularDefinitions
 letras:[a-zA-Z]
 numeros:[0-9]
+ws:\n\s
 #Tokens
 if:"if"
 AP:"("
@@ -25,9 +26,10 @@ cont:{numeros}+
 PV:";"
 print: "print"
 igual: "="
-funcao: "funcao"
 int : "int"
 virgula : ","
+funcao: "funcao"
+
 #NonTerminals
 <FUNCAO>
 <ESCOPO>

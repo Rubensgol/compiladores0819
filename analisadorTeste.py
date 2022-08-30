@@ -36,12 +36,10 @@ class AnalisaDor:
     def T(self):
         self.anterior = self.cont
         if self.T1():
-            print("t1")
             return True
         else:
             self.cont = self.anterior
             if self.T2():
-                print("t2")
                 return True
             else:
                 self.cont = self.anterior
