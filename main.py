@@ -1,8 +1,8 @@
 import anaslisador as sintaxe
-import analisadorTeste
+import analisadorTeste2
 
 listToken = sintaxe.lerTokens()
 
-anaGrama = analisadorTeste.AnalisaDor(listToken)
+anaGrama = analisadorTeste2.AnalisaDor(listToken)
 
-print(anaGrama.E())
+print(anaGrama.FUNCAO())

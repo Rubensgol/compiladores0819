@@ -11,94 +11,110 @@ class AnalisaDor:
         return ret
 
     def FUNCAO(self):
-        return self.term('funcao') and self.term('variavel') and self.term('AP') and self.PARAN() and self.term('FP') and self.term('AC') and self.ESCOPO() and self.term('FC')
+        print("#<BLOCO> ::= FUNCAO VARIAVEL AP FP AC <ESCOPO> FC")
+        return self.term('funcao') and self.term('variavel') and self.term('AP') and self.PARAN() and self.term('FP') and self.term('AC') and self.LISTESCOPO() and self.term('FC')
 
     def PARAN(self):
-        anterior = cont
+        print("#<BLOCO> ::= <TIPO> <VAR> <PARANS>")
+        self.anterior = self.cont
         if self.TIPO() and self.term('variavel') and self.PARANS():
             return True
-        else:
-            cont = anterior
-            return self.VAZIO()
 
     def PARANS(self):
-        anterior = cont
+        print("#<BLOCO> ::= VIRGUILA <PARAN> ;; î")
+        self.anterior = self.cont
         if self.term('VIRGULA') and self.PARAN():
             return True
         else:
-            cont = anterior
+            self.cont = self.anterior
             return self.VAZIO()
 
     def ESCOPO1(self):
-        return self.IF
+        print("#<BLOCO> ::= <IF>")
+        return self.IF()
     
     def ESCOPO2(self):
-        return self.PRINT
+        print("#<BLOCO> ::= <PRINT>")
+        return self.PRINT()
 
     def ESCOPO3(self):
-        return self.ATRIB
+        print("#<BLOCO> ::= <ATRIBUICAO>")
+        return self.ATRIB()
 
     def IF(self):
-        return self.term('if') and self.term('AP') and self.COND and self.term('FP') and self.term('AC') and self.ESCOPO() and self.term('FC')
+        print("#<BLOCO> ::= if ap <COND> fp ac <ESCOPO> fc")
+        return self.term('if') and self.term('AP') and self.COND() and self.term('FP') and self.term('AC') and self.LISTESCOPO() and self.term('FC')
 
     def COND(self):
-        return self.VAR and self.SCOND and self.VAR
+        print("#<BLOCO> ::= <VAR> <SCOND> <VAR>")
+        return self.VAR() and self.SCOND() and self.VAR()
 
     def ATRIB(self):
-        return self.VAR and self.term('igual') and self.VAR and self.term('PV')
+        print("#<BLOCO> ::= <VAR> igual <VAR> pv")
+        return self.VAR() and self.term('igual') and self.VAR() and self.term('PV')
 
     def SCOND(self):
-        anterior = cont
+        print("#<BLOCO> ::= <SCOND1> ;; <SCOND2>")
+        self.anterior = self.cont
         if self.SCOND1():
             return True
         else:
-            cont = anterior
+            self.cont = self.anterior
             return self.SCOND2()
 
     def SCOND1(self):
-        self.term('maior')
+        print("#<BLOCO> ::= MAIOR")
+        return self.term('maior')
     
     def SCOND2(self):
-        self.term('menor')
+        print("#<BLOCO> ::= MENOR")
+        return self.term('menor')
 
     def PRINT(self):
-        return self.term('print') and self.term('AP') and self.VAR and self.term('FP') and self.term('PV')
+        print("#<BLOCO> ::= PRINT ap <VAR> fp pv")
+        return self.term('PRINT') and self.term('AP') and self.VAR() and self.term('FP') and self.term('PV')
 
     def VAR(self):
-        anterior = cont
+        print("#<BLOCO> ::= <VARAIVAEL> ;; <CONSATNTE")
+        self.anterior = self.cont
         if self.VAR1():
             return True
         else:
-            cont = anterior
+            self.cont = self.anterior
             return self.VAR2()
 
     def VAR1(self):
-        self.term('variavel')
+        print("#<BLOCO> ::= VARiavel")
+        return self.term('variavel')
 
     def VAR2(self):
-        self.term('cont')
+        print("#<BLOCO> ::= constante")
+        return self.term('cont')
     
     def TIPO(self):
-        self.term('int')
+        print("#<BLOCO> ::= tipo")
+        return self.term('int')
 
     def ESCOPO(self):
-        anterior = cont
+        print("#<BLOCO> ::=  <IF> | <PRINT> | <ATRIB>")
+        self.anterior = self.cont
         if self.ESCOPO1():
             return True
         else:
-            cont = anterior
+            self.cont = self.anterior
             if self.ESCOPO2():
                 return True
             else:
-                cont = anterior
+                self.cont = self.anterior
                 return self.ESCOPO3()
     
     def LISTESCOPO(self):
-        anterior = cont
+        print("#<BLOCO> ::=  <ESCOPO> <LISTAESCOPO> | î")
+        self.anterior = self.cont
         if self.ESCOPO() and self.LISTESCOPO():
             return True
         else:
-            cont = anterior
+            self.cont = self.anterior
             return self.VAZIO()
 
     def VAZIO(self):
