@@ -12,7 +12,7 @@ Parser = RD
 #RegularDefinitions
 letras:[a-zA-Z]
 numeros:[0-9]
-ws:\n\s
+ws:[\ \t\n\r]
 #Tokens
 if:"if"
 AP:"("
@@ -29,6 +29,7 @@ igual: "="
 int : "int"
 virgula : ","
 funcao: "funcao"
+: {ws}*
 
 #NonTerminals
 <FUNCAO>
@@ -42,10 +43,12 @@ funcao: "funcao"
 <PARAN>
 <PARANS>
 <TIPO>
+<LISTAESCOPO>
 #Grammar
-<FUNCAO> ::= funcao variavel AP <PARAN> FP AC <ESCOPO> FC;
+<FUNCAO> ::= funcao variavel AP <PARAN> FP AC <LISTAESCOPO> FC;
 <PARAN> ::= <TIPO> variavel<PARANS> ;
 <PARANS> ::= virgula<PARAN> | î;
+<LISTAESCOPO> ::= <ESCOPO> <LISTAESCOPO> | î ;
 <ESCOPO> ::= <IF> | <PRINT> | <ATRIB>;
 <IF> ::= if AP <COND> FP AC <ESCOPO> FC;
 <COND> ::= <VAR> <SCOND> <VAR>;
