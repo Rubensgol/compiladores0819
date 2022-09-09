@@ -1,8 +1,10 @@
-import anaslisador as sintaxe
-import analisadorTeste2
+import lexico as sintaxe
+import analisadorDependente
 
-listToken = sintaxe.lerTokens()
+listToken = sintaxe.Lexico()
 
-anaGrama = analisadorTeste2.AnalisaDor(listToken)
+listToken.lerTokens()
 
-print(anaGrama.FUNCAO())
+anaGrama = analisadorDependente.AnalisaDor(listToken)
+
+anaGrama.analisa()
