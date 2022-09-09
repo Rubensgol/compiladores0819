@@ -24,10 +24,10 @@ class AnalisaDor:
                     if not token == self.pilha[0] and self.pilha[0].startswith('<'):
                         try:
                             regra = tabelaTransicaoDic[self.pilha[0]][token]
+                            self.pilha.pop(0)
+                            self.pilha = regra + self.pilha
                         except KeyError:
-                            regra = tabelaTransicaoDic[self.pilha[0]]['']
-                        self.pilha.pop(0)
-                        self.pilha = regra + self.pilha
+                            print("erro sintatico")
                     else:
                         print('terminal não esperado')
                         acaba = True

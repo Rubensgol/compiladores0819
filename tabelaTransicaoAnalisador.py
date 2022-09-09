@@ -7,8 +7,8 @@ tabelaTransicaoDic = {  '<FUNCAO>' : {'funcao' : ['funcao', 'variavel', 'AP', '<
                         '<VAR>' : {'variavel' : ['variavel'], 'cont': ['cont']},
                         '<ATRIB>' : {'variavel' : ['<VAR>', 'igual', '<VAR>', 'PV'], 'cont' : ['<VAR>', 'igual', '<VAR>', 'PV']},
                         '<PARAN>' : {'int' : ['<TIPO>', 'variavel', '<PARANS>'], }, 
-                        '<PARANS>' : {'VIRGULA': ['VIRGULA', '<PARAN>'], '' : []},
+                        '<PARANS>' : {'VIRGULA': ['VIRGULA', '<PARAN>'], 'FP' : []},
                         '<TIPO>' : {'int': ['int']},
                         '<LISTAESCOPO>' : {'variavel': ['<ESCOPO>', '<LISTAESCOPO>'], 'if' : ['<ESCOPO>', '<LISTAESCOPO>'], 'print': ['<ESCOPO>', '<LISTAESCOPO>'], 'cont': ['<ESCOPO>', '<LISTAESCOPO>'],
-                         '' : []}
+                         'FC' : []}
 }
