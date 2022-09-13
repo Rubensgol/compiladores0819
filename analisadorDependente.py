@@ -1,5 +1,3 @@
-from asyncio.windows_events import NULL
-from cmath import pi
 from lexico import Lexico
 from tabelaTransicaoAnalisador import tabelaTransicaoDic
 
