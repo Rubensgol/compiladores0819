@@ -1,5 +1,5 @@
 tabelaTransicaoDic = {  '<FUNCAO>' : {'funcao' : ['funcao', 'variavel', 'AP', '<PARAN>', 'FP', 'AC', '<LISTAESCOPO>', 'FC']},
-                        '<ESCOPO>' : {'if' : ['<IF>'], 'PRINT': ['<PRINT>'], 'variavel' : ['<ATRIB>'], 'cont': ['<ATRIB>'] },
+                        '<ESCOPO>' : {'if' : ['<IF>'], 'PRINT': ['<PRINT>'], 'variavel' : ['<ATRIB>'], 'cont': ['<ATRIB>'] , 'FC': ['SYNC']},
                         '<IF>' : {'if' : ['if', 'AP', '<COND>', 'FP', 'AC', '<ESCOPO>', 'FC']},
                         '<COND>' : {'variavel': [ '<VAR>', '<SCOND>', '<VAR>'], 'cont' : ['<VAR>', '<SCOND>', '<VAR>'] },
                         '<SCOND>' : {'maior': ['maior'], 'menor' : ['menor'] },

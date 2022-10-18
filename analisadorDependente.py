@@ -21,7 +21,7 @@ class AnalisaDor:
                         self.pilha.pop(0)
                         token = self.lexico.nextToken()[0]
                     else:
-                        if not token == self.pilha[0] and self.pilha[0].startswith('<'):
+                        if self.pilha[0].startswith('<'):
                             regra = tabelaTransicaoDic[self.pilha[0]][token]
                             self.pilha.pop(0)
                             self.pilha = regra + self.pilha

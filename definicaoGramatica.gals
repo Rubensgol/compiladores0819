@@ -8,7 +8,7 @@ SemanticName = Semantico
 ScannerCaseSensitive = true
 ScannerTable = Full
 Input = Stream
-Parser = RD
+Parser = SLR
 #RegularDefinitions
 letras:[a-zA-Z]
 numeros:[0-9]
@@ -27,6 +27,7 @@ PV:";"
 print: "print"
 igual: "="
 int : "int"
+string : "string"
 virgula : ","
 funcao: "funcao"
 : {ws}*
@@ -44,17 +45,26 @@ funcao: "funcao"
 <PARANS>
 <TIPO>
 <LISTAESCOPO>
+<ABRECHAVE>
+<FECHACHAVE>
+<ABREPAREN>
+<FECHAPAREN>
 #Grammar
-<FUNCAO> ::= funcao variavel AP <PARAN> FP AC <LISTAESCOPO> FC;
-<PARAN> ::= <TIPO> variavel<PARANS> ;
+<FUNCAO> ::= funcao variavel <ABREPAREN> <PARAN> <ABREPAREN> <ABRECHAVE> <LISTAESCOPO><FECHACHAVE>;
+<PARAN> ::= <TIPO> variavel<PARANS>  | î;
 <PARANS> ::= virgula<PARAN> | î;
 <LISTAESCOPO> ::= <ESCOPO> <LISTAESCOPO> | î ;
 <ESCOPO> ::= <IF> | <PRINT> | <ATRIB>;
-<IF> ::= if AP <COND> FP AC <ESCOPO> FC;
+<IF> ::= if <ABREPAREN> <COND> <FECHAPAREN> <ABRECHAVE> <ESCOPO> <FECHACHAVE>;
 <COND> ::= <VAR> <SCOND> <VAR>;
 <ATRIB> ::= <VAR> igual <VAR> PV;
 <SCOND> ::= MAIOR | MENOR;
-<PRINT> ::= print AP <VAR> FP PV;
+<PRINT> ::= print <ABREPAREN> <VAR> <FECHAPAREN> PV;
 <VAR> ::= variavel | cont;
-<TIPO> ::= int;
+<TIPO> ::= int | string;
+<ABRECHAVE> ::= AC;
+<FECHACHAVE> ::= FC;
+<ABREPAREN> ::= AP;
+<FECHAPAREN> ::= FP;
+
 
