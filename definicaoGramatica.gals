@@ -7,64 +7,13 @@ ParserName = Sintatico
 SemanticName = Semantico
 ScannerCaseSensitive = true
 ScannerTable = Full
-Input = Stream
+Input = String
 Parser = SLR
 #RegularDefinitions
-letras:[a-zA-Z]
-numeros:[0-9]
-ws:[\ \t\n\r]
+
 #Tokens
-if:"if"
-AP:"("
-FP:")"
-AC: "{"
-FC: "}"
-MAIOR: ">"
-MENOR: "<"
-variavel:{letras}({letras}{numeros})*
-cont:{numeros}+
-PV:";"
-print: "print"
-igual: "="
-int : "int"
-string : "string"
-virgula : ","
-funcao: "funcao"
-: {ws}*
 
 #NonTerminals
-<FUNCAO>
-<ESCOPO>
-<IF>
-<COND>
-<PRINT>
-<SCOND>
-<VAR>
-<ATRIB>
-<PARAN>
-<PARANS>
-<TIPO>
-<LISTAESCOPO>
-<ABRECHAVE>
-<FECHACHAVE>
-<ABREPAREN>
-<FECHAPAREN>
-#Grammar
-<FUNCAO> ::= funcao variavel <ABREPAREN> <PARAN> <ABREPAREN> <ABRECHAVE> <LISTAESCOPO><FECHACHAVE>;
-<PARAN> ::= <TIPO> variavel<PARANS>  | î;
-<PARANS> ::= virgula<PARAN> | î;
-<LISTAESCOPO> ::= <ESCOPO> <LISTAESCOPO> | î ;
-<ESCOPO> ::= <IF> | <PRINT> | <ATRIB>;
-<IF> ::= if <ABREPAREN> <COND> <FECHAPAREN> <ABRECHAVE> <ESCOPO> <FECHACHAVE>;
-<COND> ::= <VAR> <SCOND> <VAR>;
-<ATRIB> ::= <VAR> igual <VAR> PV;
-<SCOND> ::= MAIOR | MENOR;
-<PRINT> ::= print <ABREPAREN> <VAR> <FECHAPAREN> PV;
-<VAR> ::= variavel | cont;
-<TIPO> ::= int | string;
-<ABRECHAVE> ::= AC;
-<FECHACHAVE> ::= FC;
-<ABREPAREN> ::= AP;
-<FECHAPAREN> ::= FP;
 
+#Grammar
 
